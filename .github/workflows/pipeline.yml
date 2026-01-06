@@ -53,3 +53,6 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python self_paced_courses_1_mlops/hosting/hosting.py
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python self_paced_courses_1_mlops/hosting/hosting.py
