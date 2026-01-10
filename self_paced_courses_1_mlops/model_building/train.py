@@ -18,10 +18,10 @@ from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 
 api = HfApi()
 
-Xtrain_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/Xtrain.csv"   # enter the Hugging Face username here
-Xtest_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/Xtest.csv"     # enter the Hugging Face username here
-ytrain_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/ytrain.csv"   # enter the Hugging Face username here
-ytest_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/ytest.csv"      # enter the Hugging Face username here
+Xtrain_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/Xtrain.csv"   # 2 enter Hugging Face username here
+Xtest_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/Xtest.csv"     # 3 enter Hugging Face username here
+ytrain_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/ytrain.csv"   # 4 enter Hugging Face username here
+ytest_path = "hf://datasets/GaryWilliams1668/PIMA-Diabetes-Prediction/ytest.csv"     # 5 enter Hugging Face username here
 
 Xtrain = pd.read_csv(Xtrain_path)
 Xtest = pd.read_csv(Xtest_path)
@@ -86,7 +86,7 @@ print(classification_report(ytest, y_pred_test))
 joblib.dump(best_model, "best_pima_diabetes_model_v1.joblib")
 
 # Upload to Hugging Face
-repo_id = "GaryWilliams1668/PIMA-Diabetes-Prediction"                                         # enter the Hugging Face username here
+repo_id = "GaryWilliams1668/PIMA-Diabetes-Prediction"  # 6 enter Hugging Face username here
 repo_type = "model"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
@@ -100,7 +100,9 @@ except RepositoryNotFoundError:
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
     print(f"Model Space '{repo_id}' created.")
 
+# REMOVED COMMENT ON THIS CODE
 # create_repo("best_machine_failure_model", repo_type="model", private=False)
+create_repo("best_machine_failure_model", repo_type="model", private=False)
 api.upload_file(
     path_or_fileobj="best_pima_diabetes_model_v1.joblib",
     path_in_repo="best_pima_diabetes_model_v1.joblib",
